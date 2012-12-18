@@ -1,6 +1,6 @@
 # Installation:
 
-git clone ~/.vim
+git clone https://github.com/hogepodge/vimfiles.git ~/.vim
 
 # Create symlinks to vimrc files
 
