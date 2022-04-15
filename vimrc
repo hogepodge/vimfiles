@@ -1,51 +1,39 @@
-execute pathogen#infect()
 syntax on
-call pathogen#helptags()
-set nocompatible
 
-set expandtab
-set softtabstop=0
-set tabstop=4
-set shiftwidth=4
-set smartindent
+set nocompatible " Disable vi compatibility
+
+""" Status Bar Settings
+set laststatus=2 " Always show the status bar
 set ruler
+
+""" Tab and Indendation Behavior
+set expandtab     " Always expand tabs to spaces
+set softtabstop=0 " Turn off the feature that inserts a combination of spaces and tabs to tabstop
+set tabstop=4     " Indent tabs by 4
+set shiftwidth=4  " Sets the number of spaces for shifting indents to 4
+set smartindent   " Automatically indent for auto formatting
 
 nnoremap <SPACE> <PAGEDOWN>
 
+""" Color Schemes and Syntax Highlighting and Other Chrome
 set background=light
 syntax enable
-
 set number
-set laststatus=2
-set incsearch
-" highlight search
-set hlsearch
-nmap <DEL> :nohlsearch
-"\v flips metasyntactic regexing
 
-filetype plugin indent on
+""" Search
+set incsearch " incrementally search through a document
+set hlsearch  " highlight search results
+set smartcase ignorecase
+nmap <DEL> :nohlsearh
 
-let vimclojure#HighlightBuiltins=1      " Highlight Clojure's builtins
-let vimclojure#ParenRainbow=1           " Rainbow parentheses'!
-
-let g:slimv_impl='clojure'
-let g:paredit_mode=0
-
+""" Filetype Handling
+autocmd FileType c          set cindent | set tw=0 | noremap <C-u> :ClangFormat<CR>j | let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
+autocmd FileType cpp        set cindent | set tw=0 | noremap <C-u> :ClangFormat<CR>j | let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
+autocmd FileType javascript set cindent | set tw=0 | map <C-u> i<C-f><Esc>j | let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
+autocmd FileType go         set tw=0 | set noexpandtab | set ts=2 | set shiftwidth=2
+autocmd FileType python set cindent | set tw=0 | set shiftwidth=4 | set expandtab | set ts=4 | map <C-u> i<C-f><Esc>j | let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
+autocmd FileType sh         set cindent | set tw=0 | map <C-u> i<C-f><Esc>j | let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
+autocmd FileType txt        set spell | set nolist
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
-" You may want to turn this off for some files
-" Use the warning script
-"if has('persistent_undo')
-"    set undofile
-"    set undodir $HOME/.vim/undo_files
-"endif
-
-set virtualedit=block
-" reselect block with gv
-" :set ignorecase to ignore case for searching, smartcase enables if one
-" uppercase
-set smartcase ignorecase
-
-"augroup VimReload
-"    autocmd!
-"    autocmd BufWritePost
+set virtualedit=block " allow block editing in places where there are no actual characters
