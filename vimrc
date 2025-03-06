@@ -16,7 +16,7 @@ set smartindent   " Automatically indent for auto formatting
 nnoremap <SPACE> <PAGEDOWN>
 
 """ Color Schemes and Syntax Highlighting and Other Chrome
-set background=light
+set background=dark
 syntax enable
 set number
 
@@ -37,3 +37,11 @@ autocmd FileType txt        set spell | set nolist
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
 set virtualedit=block " allow block editing in places where there are no actual characters
+
+call plug#begin()
+Plug 'EdenEast/nightfox.nvim'
+Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
+Plug 'tpope/vim-vividchalk'
+Plug 'modular/mojo.vim'
+call plug#end()
+
